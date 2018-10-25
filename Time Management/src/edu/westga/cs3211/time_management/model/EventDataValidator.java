@@ -3,9 +3,7 @@ package edu.westga.cs3211.time_management.model;
 import java.util.Date;
 
 /**
- * 
- * @authors TylerWingfield, JeremiahLiscum, JosephFuller
- *
+ * @authors TylerWingfield, JeremiahLiscum, JosephFuller,jcorley
  */
 public class EventDataValidator {
 	
