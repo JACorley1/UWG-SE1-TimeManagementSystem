@@ -16,10 +16,10 @@ public class Calendar {
 	}
 	public boolean declareConflict(Event event) {
 		for(Event current: this.events) {
-			if(event.getStartTime.isAfter(current.getStartTime) && event.getStartTime.isBefore(current.getEndTime)) {
+			if(event.getStartTime().isAfter(current.getStartTime()) && event.getStartTime().isBefore(current.getEndTime())) {
 				return true;
 			}
-			if(event.getEndTime.isAfter(current.getStartTime) && event.getEndTime.isBefore(current.getEndTime)) {
+			if(event.getEndTime().isAfter(current.getStartTime()) && event.getEndTime().isBefore(current.getEndTime())) {
 				return true;
 			}
 		}
