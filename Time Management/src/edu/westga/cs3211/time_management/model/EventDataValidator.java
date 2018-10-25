@@ -2,7 +2,7 @@ package edu.westga.cs3211.time_management.model;
 
 /** Validate Event information.
  * 
- * @author csuser
+ * @author jcorley
  */
 public class EventDataValidator {
 
