@@ -1,9 +1,10 @@
 package edu.westga.cs3211.time_management.model;
 
-import java.util.Date;
+import java.time.LocalTime;
 
-/**
- * @authors TylerWingfield, JeremiahLiscum, JosephFuller,jcorley
+/** Validate Event information.
+ * 
+ * @author Dylan Knox, Kyle Riggs, Cody Graham, TylerWingfield, JeremiahLiscum, JosephFuller, and Jonathan Corleys
  */
 public class EventDataValidator {
 	
@@ -12,10 +13,20 @@ public class EventDataValidator {
 	 * @param endTime
 	 * @return
 	 */
-	public boolean checkEndTime(Object endTime) {
-		boolean aBoolean = true;
-		Date DateThing;
-		return aBoolean;
+	public boolean checkEndTime(LocalTime endTime) {
+		boolean isValid = false;
+		if(endTime != null) {
+			
+		}
+		return isValid;
 	}
-	
+
+	/**
+	 * Checks start time.
+	 * 
+	 */
+	public void checkStartTime(LocalTime startTime) {
+		
+	}
+
 }
