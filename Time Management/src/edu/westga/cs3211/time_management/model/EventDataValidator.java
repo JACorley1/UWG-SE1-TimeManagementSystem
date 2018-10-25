@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 /** Validate Event information.
  * 
- * @author Dylan Knox, Kyle Riggs, Cody Graham
+ * @author Dylan Knox, Kyle Riggs, Cody Graham, and Jonathan Corleys
  */
 public class EventDataValidator {
 
