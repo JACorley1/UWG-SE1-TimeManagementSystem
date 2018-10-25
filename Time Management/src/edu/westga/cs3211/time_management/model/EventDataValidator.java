@@ -1,8 +1,10 @@
 package edu.westga.cs3211.time_management.model;
 
+import java.time.LocalTime;
+
 /** Validate Event information.
  * 
- * @author Tristen Rivera, Tyler Scott, Dexter Tarver
+ * @author Dylan Knox, Kyle Riggs, Cody Graham, and Jonathan Corley,  Tristen Rivera, Tyler Scott, Dexter Tarver
  */
 public class EventDataValidator {
 	
@@ -28,4 +30,11 @@ public class EventDataValidator {
 		return result;
 	}
 
+	/**
+	 * Checks start time.
+	 * 
+	 */
+	public void checkStartTime(LocalTime startTime) {
+		
+	}
 }
