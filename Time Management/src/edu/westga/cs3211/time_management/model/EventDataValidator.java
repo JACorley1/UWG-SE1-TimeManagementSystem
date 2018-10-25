@@ -38,10 +38,19 @@ public class EventDataValidator {
 	
 	/**
 	 * @authors TylerWingfield, JeremiahLiscum, JosephFuller
-	 * @param endTime
-	 * @return
+	 * @param endTime, startTime
+	 * 
+	 * @precondition startTime != null && endTime != null
+	 * 
+	 * @return boolean
 	 */
 	public boolean checkEndTime(LocalTime startTime, LocalTime endTime) {
+		if(startTime==null) {
+			throw new IllegalArgumentException("startTime cannot be null");
+		}
+		if(endTime==null) {
+			throw new IllegalArgumentException("endTime cannot be null");
+		}
 		return endTime.compareTo(startTime)>0;
 	}
 
