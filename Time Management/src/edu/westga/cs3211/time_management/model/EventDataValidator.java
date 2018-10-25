@@ -5,7 +5,6 @@ import java.time.LocalTime;
 /** Validate Event information.
  * 
  * @author Dylan Knox, Kyle Riggs, Cody Graham, and TylerWingfield, JeremiahLiscum, JosephFuller, Jonathan Corley,  Tristen Rivera, Tyler Scott, Dexter Tarver
->>>>>>> branch 'master' of https://github.com/JACorley1/UWG-SE1-TimeManagementSystem
  */
 public class EventDataValidator {
 	
@@ -36,12 +35,8 @@ public class EventDataValidator {
 	 * @param endTime
 	 * @return
 	 */
-	public boolean checkEndTime(LocalTime endTime) {
-		boolean isValid = false;
-		if(endTime != null) {
-			
-		}
-		return isValid;
+	public boolean checkEndTime(LocalTime startTime, LocalTime endTime) {
+		return endTime.compareTo(startTime)>0;
 	}
 
 	/**
