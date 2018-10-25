@@ -2,6 +2,11 @@ package edu.westga.cs3211.time_management;
 
 import java.util.Date;
 
+/**
+ * 
+ * @authors TylerWingfield, JeremiahLiscum, JosephFuller
+ *
+ */
 public class EventDataValidator {
 	
 	/**
