@@ -20,7 +20,7 @@ public class EventDataValidator {
 		
 		boolean result;
 		
-		if(name.length() > 60) {
+		if(name.length() >= 60) {
 			result = false;
 		}else if(name.isEmpty()) {
 			result = false;
