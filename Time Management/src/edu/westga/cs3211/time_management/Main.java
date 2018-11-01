@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 	public static final String MAIN_WINDOW_TITLE = "Title Goes Here";
-	public static final String MAIN_WINDOW_VIEW = "view/MainWindow.fxml";
+	public static final String MAIN_WINDOW_VIEW = "view/AddEvent.fxml";
 
 	/**
 	 * JavaFX entry point.
