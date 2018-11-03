@@ -79,16 +79,16 @@ public class EventDataValidator {
 
 	/**
 	 * Checks the list of attendees
-	 * 
-	 * @param String names
+	 * @precondition names != null && names.contains(null) == false 
+	 * 				&& names.contains("") == false 					
+	 * @param String names the names of the attendees
 	 */
 	public void checkAttendees(List<String> names) {
 		if (names == null) {
-
+			throw new IllegalArgumentException("names cannot be null");
 		}
-		List<String> attendees = names;
-		for (String curAttendee : attendees) {
-
+		if (names.contains(null) || names.contains("")) {
+			throw new IllegalArgumentException("attendees can not be null or empty");
 		}
 	}
 }
