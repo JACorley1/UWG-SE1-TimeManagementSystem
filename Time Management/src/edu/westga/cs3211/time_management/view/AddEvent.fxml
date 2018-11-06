@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -7,27 +10,26 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane minHeight="333.0" minWidth="314.0" prefHeight="333.0" prefWidth="314.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="edu.westga.cs3211.time_management.view.AddEvent">
+<AnchorPane minHeight="333.0" minWidth="314.0" prefHeight="333.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.time_management.view.AddEvent">
    <children>
       <Label fx:id="nameLabel" layoutX="43.0" layoutY="18.0" text="Name: " />
-      <Label layoutX="24.0" layoutY="53.0" text="Start Time: " />
-      <Label layoutX="28.0" layoutY="88.0" text="EndTime: " />
-      <Label layoutX="28.0" layoutY="123.0" text="Location: " />
-      <Label layoutX="14.0" layoutY="159.0" text="Description: " />
-      <Label layoutX="18.0" layoutY="194.0" text="Attendees: " />
-      <Label layoutX="28.0" layoutY="259.0" text="Visibility: " />
-      <TextField layoutX="89.0" layoutY="14.0" />
-      <DatePicker layoutX="89.0" layoutY="49.0" />
-      <DatePicker layoutX="89.0" layoutY="84.0" />
-      <TextField layoutX="89.0" layoutY="119.0" />
-      <TextField layoutX="89.0" layoutY="155.0" />
-      <ComboBox layoutX="88.0" layoutY="223.0" prefWidth="150.0" />
-      <Button layoutX="245.0" layoutY="190.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="245.0" layoutY="223.0" mnemonicParsing="false" text="Remove" />
-      <TextField layoutX="89.0" layoutY="190.0" />
-      <ComboBox layoutX="88.0" layoutY="255.0" prefWidth="150.0" />
-      <Button layoutX="73.0" layoutY="300.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="152.0" layoutY="300.0" mnemonicParsing="false" text="Add" />
+      <Label fx:id="startTimeLabel" layoutX="24.0" layoutY="53.0" text="Start Time: " />
+      <Label fx:id="endTimeLabel" layoutX="28.0" layoutY="88.0" text="EndTime: " />
+      <Label fx:id="locationLabel" layoutX="28.0" layoutY="123.0" text="Location: " />
+      <Label fx:id="descriptionLabel" layoutX="14.0" layoutY="159.0" text="Description: " />
+      <Label fx:id="attendeesLabel" layoutX="18.0" layoutY="194.0" text="Attendees: " />
+      <Label fx:id="visibilityLabel" layoutX="28.0" layoutY="259.0" text="Visibility: " />
+      <TextField fx:id="nameText" layoutX="89.0" layoutY="14.0" />
+      <DatePicker fx:id="startTimeDate" layoutX="89.0" layoutY="49.0" />
+      <DatePicker fx:id="endTimeDate" layoutX="89.0" layoutY="84.0" />
+      <TextField fx:id="locationText" layoutX="89.0" layoutY="119.0" />
+      <TextField fx:id="descriptionText" layoutX="89.0" layoutY="155.0" />
+      <ComboBox fx:id="attendeesList" layoutX="88.0" layoutY="223.0" prefWidth="150.0" />
+      <Button layoutX="245.0" layoutY="190.0" mnemonicParsing="false" onAction="#addAttendee" text="Add" />
+      <Button layoutX="245.0" layoutY="223.0" mnemonicParsing="false" onAction="#removeAttendee" text="Remove" />
+      <TextField fx:id="newAttendeeText" layoutX="89.0" layoutY="190.0" />
+      <ComboBox fx:id="visibilityList" layoutX="88.0" layoutY="255.0" prefWidth="150.0" />
+      <Button layoutX="73.0" layoutY="300.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button layoutX="152.0" layoutY="300.0" mnemonicParsing="false" onAction="#addEvent" text="Add" />
    </children>
 </AnchorPane>

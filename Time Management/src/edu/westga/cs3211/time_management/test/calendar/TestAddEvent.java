@@ -1,4 +1,4 @@
-package edu.westga.cs3211.time_management.test.testcalendar;
+package edu.westga.cs3211.time_management.test.calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,7 +35,7 @@ public class TestAddEvent {
 		
 		myCalendar.addEvent(myEvent);
 		
-		Assertions.assertEquals(1, myCalendar.getEvents().size());
+		assertEquals(1, myCalendar.getEvents().size());
 		
 	}
 

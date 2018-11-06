@@ -2,6 +2,7 @@ package edu.westga.cs3211.time_management.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /** Store basic information for an event.
  * 
@@ -14,10 +15,58 @@ public class Event {
 	private LocalDateTime endTime;
 	private String location;
 	private String description;
-	private ArrayList<String> attendees;
+	private List<String> attendees;
 	private Visibility visibility;
 	
-	public Event(String name, LocalDateTime start, LocalDateTime end, String location, String description, ArrayList<String> attendees, Visibility visibility) {
+	/** Creates a new Event
+	 * 
+	 * @precondition EventDataValidator.checkName(name) &&
+	 * 				 EventDataValidator.checkStartTime(start) &&
+	 * 				 EventDataValidator.checkEndTime(start, end) &&
+	 * 				 EventDataValidator.checkAttendees(attendees) &&
+	 * 				 location != null &&
+	 * 				 description != null &&
+	 * 				 visibility != null
+	 * @postcondition getName() == name &&
+	 * 				  getStartTime() == startTime &&
+	 * 				  getEndTime() == endTime &&
+	 * 				  getLocation() == location &&
+	 * 				  getDescription() == description &&
+	 * 				  getAttendees() == attendees &&
+	 * 				  getVisibility() == visibility
+	 * 
+	 * @param name name of the event
+	 * @param start start time for the event
+	 * @param end end time for the event
+	 * @param location location for the event
+	 * @param description description of the event
+	 * @param attendees list of the names of attendees for the event
+	 * @param visibility visibility of the event
+	 */
+	public Event(String name, LocalDateTime start, LocalDateTime end, String location, String description, List<String> attendees, Visibility visibility) {
+		if(!EventDataValidator.checkName(name)) {
+			throw new IllegalArgumentException("Invalid name");
+		}
+		if(!EventDataValidator.checkStartTime(start)) {
+			System.out.println(LocalDateTime.now());
+			System.out.println(start);
+			throw new IllegalArgumentException("Invalid start time");
+		}
+		if(!EventDataValidator.checkEndTime(start, end)) {
+			throw new IllegalArgumentException("Invalid end time");
+		}
+		if(!EventDataValidator.checkAttendees(attendees)) {
+			throw new IllegalArgumentException("Invalid attendees");
+		}
+		if(location == null) {
+			throw new IllegalArgumentException("Invalid location");
+		}
+		if(description == null) {
+			throw new IllegalArgumentException("Invalid description");
+		}
+		if(visibility == null) {
+			throw new IllegalArgumentException("Invalid visibility");
+		}
 		this.name = name;
 		this.startTime = start;
 		this.endTime = end;
@@ -27,33 +76,94 @@ public class Event {
 		this.visibility = visibility;
 	}
 
+	/** return the name of the event
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the name of the event
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/** return the start time of the event
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the start time of the event
+	 */
 	public LocalDateTime getStartTime() {
 		return this.startTime;
 	}
 
+	/** return the end time of the event
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the end time of the event
+	 */
 	public LocalDateTime getEndTime() {
 		return this.endTime;
 	}
 
+	/** return the location of the event
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the location of the event
+	 */
 	public String getLocation() {
 		return this.location;
 	}
 
+	/** return the description of the event
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the description of the event
+	 */
 	public String getDescription() {
 		return this.description;
 	}
 
-	public ArrayList<String> getAttendees() {
+	/** return the list of names of attendees for the event
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the list of names of attendees for the event
+	 */
+	public List<String> getAttendees() {
 		return this.attendees;
 	}
 
+	/** return the visibility of the event
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the visibility of the event
+	 */
 	public Visibility getVisibility() {
 		return this.visibility;
 	}
 
+
+	/** Convert the Event to a String representation.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return String representation of the Event
+	 */
+	@Override
+	public String toString() {
+		return this.name + "(" + this.startTime + "," + this.endTime + ")";
+	}
 	
 }

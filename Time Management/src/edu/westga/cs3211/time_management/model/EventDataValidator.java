@@ -11,10 +11,7 @@ import java.time.LocalTime;
  *         Liscum, Joseph Fuller, Jonathan Corley, Tristen Rivera, Tyler Scott,
  *         Dexter Tarver, Daniel Jeselnik, Dylan McCleskey, Justin Smith
  */
-
 public class EventDataValidator {
-
-	private static final String START_TIME_NULL = "startTime cannot be null";
 	
 	/**
 	 * Checks if the even name is valid
@@ -25,16 +22,14 @@ public class EventDataValidator {
 	 * @param name the name of the event
 	 * @return true if the name is valid
 	 */
-	public boolean checkName(String name) {
-
-		boolean result;
-		
-		if(name.length() >= 60) {
+	public static boolean checkName(String name) {
+		boolean result = true;
+		if (name == null) {
+			result = false;
+		} else if (name.length() >= 60) {
 			result = false;
 		} else if (name.isEmpty()) {
 			result = false;
-		} else {
-			result = true;
 		}
 		return result;
 	}
@@ -50,45 +45,53 @@ public class EventDataValidator {
 	 * 
 	 * @return true if the start time is before the current time, false otherwise.
 	 */
-	public boolean isStartTimeBeforeNow(LocalDateTime startTime) {
-		// TODO Note that the method was changed from checkStartTime() to isStartTimeBeforeNow() to better show intent and what the method is returning (boolean instead of void).
+	public static boolean checkStartTime(LocalDateTime startTime) {
 		if (startTime == null) {
-			throw new NullPointerException(START_TIME_NULL);
+			return false;
 		}
 		
-		return startTime.isBefore(LocalDateTime.now());
+		return !startTime.isBefore(LocalDateTime.now());
 	}
 	
 	/**
 	 * @authors TylerWingfield, JeremiahLiscum, JosephFuller
 	 * @param endTime, startTime
 	 * 
-	 * @precondition startTime != null && endTime != null
+	 * @precondition startTime != null
 	 * 
-	 * @return boolean
+	 * @return true  if endTime is a valid time after startTime
+	 * 		   false if endTime is not or is not after startTime
 	 */
-	public boolean checkEndTime(LocalTime startTime, LocalTime endTime) {
-		if(startTime==null) {
+	public static boolean checkEndTime(LocalDateTime startTime, LocalDateTime endTime) {
+		if(startTime == null) {
 			throw new IllegalArgumentException("startTime cannot be null");
 		}
-		if(endTime==null) {
-			throw new IllegalArgumentException("endTime cannot be null");
+		if(endTime == null) {
+			return false;
 		}
-		return endTime.compareTo(startTime)>0;
+		return endTime.isAfter(startTime);
 	}
 
-	/**
-	 * Checks the list of attendees
-	 * @precondition names != null && names.contains(null) == false 
-	 * 				&& names.contains("") == false 					
+	/** Checks the list of attendees
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 					
 	 * @param String names the names of the attendees
+	 * 
+	 * @return true  if list contains valid names (see checkName for more details)
+	 * 		   false if list contains one or more invalid names (see checkName for more details)
 	 */
-	public void checkAttendees(List<String> names) {
+	public static boolean checkAttendees(List<String> names) {
 		if (names == null) {
-			throw new IllegalArgumentException("names cannot be null");
+			return false;
 		}
-		if (names.contains(null) || names.contains("")) {
-			throw new IllegalArgumentException("attendees can not be null or empty");
+		
+		for(String name : names) {
+			if(!EventDataValidator.checkName(name)) {
+				return false;
+			}
 		}
+		return true;
 	}
 }
