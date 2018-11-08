@@ -5,7 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import edu.westga.cs3211.time_management.Main;
+import edu.westga.cs3211.time_management.model.Calendar;
 import edu.westga.cs3211.time_management.model.Event;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,17 +24,12 @@ import javafx.stage.Stage;
  */
 public class MainWindow {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private ListView<Event> eventList;
-
-    @FXML
-    private TextArea eventDetailsText;
+    @FXML private ResourceBundle resources;
+    @FXML private URL location;
+    @FXML private ListView<Event> eventList;
+    @FXML private TextArea eventDetailsText;
+    
+    private Calendar calendar;
 
     @FXML
     void addEvent(ActionEvent event) throws IOException {
@@ -41,11 +38,15 @@ public class MainWindow {
     	loader.load();
     	Parent parent= loader.getRoot();
     	Scene scene= new Scene(parent);
-    	Stage addTodoStage= new Stage();
-    	addTodoStage.setTitle("Add New Event");
-    	addTodoStage.setScene(scene);
-    	addTodoStage.initModality(Modality.APPLICATION_MODAL);
-    	addTodoStage.show();
+    	Stage addEventStage= new Stage();
+    	addEventStage.setTitle("Add New Event");
+    	addEventStage.setScene(scene);
+    	addEventStage.initModality(Modality.APPLICATION_MODAL);
+    	AddEvent addEventDialog = loader.getController();
+    	addEventDialog.setCalendar(this.calendar);
+    	addEventStage.showAndWait();
+
+        this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     }
 
     @FXML
@@ -53,6 +54,8 @@ public class MainWindow {
         assert eventList != null : "fx:id=\"eventList\" was not injected: check your FXML file 'MainWindow.fxml'.";
         assert eventDetailsText != null : "fx:id=\"eventDetailsText\" was not injected: check your FXML file 'MainWindow.fxml'.";
 
+        this.calendar = new Calendar();
+        this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
     }
 }
 
