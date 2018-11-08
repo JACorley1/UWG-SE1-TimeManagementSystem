@@ -1,9 +1,14 @@
 package edu.westga.cs3211.time_management.view;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import edu.westga.cs3211.time_management.model.Calendar;
+import edu.westga.cs3211.time_management.model.Event;
 import edu.westga.cs3211.time_management.model.EventDataValidator;
 import edu.westga.cs3211.time_management.model.Visibility;
 import javafx.collections.FXCollections;
@@ -12,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -73,9 +79,57 @@ public class AddEvent {
 
     @FXML
     void addEvent(ActionEvent event) {
-    	//TODO complete logic for verifying and adding an event
+    	String errorText = "";
+    	String name = this.nameText.getText();
+    	if(!EventDataValidator.checkName(name)) {
+    		errorText += "Name is invalid" + System.lineSeparator();
+    	}
+    	LocalDateTime startTime = LocalDateTime.of(this.startTimeDate.getValue(), LocalTime.of(9, 0));
+    	if(!EventDataValidator.checkStartTime(startTime)) {
+    		errorText += "Start time is invalid" + System.lineSeparator();
+    	}
+    	LocalDateTime endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(5, 0));
+    	if(!EventDataValidator.checkStartTime(endTime)) {
+    		errorText += "Start time is invalid" + System.lineSeparator();
+    	}
+    	List<String> attendees = this.attendeesList.getItems();
+    	if(!EventDataValidator.checkAttendees(attendees)) {
+    		errorText += "List of attendee names is invalid" + System.lineSeparator();
+    	}
+    	if(!errorText.isEmpty()) {
+    		this.displayErrorMessage(errorText);
+    		return;
+    	}
     	
-    	((Node)(event.getSource())).getScene().getWindow().hide();
+    	String location = this.locationText.getText();
+    	if(location == null) {
+    		location = "";
+    	}
+    	String description = this.descriptionText.getText();
+    	if(description == null) {
+    		description = "";
+    	}
+    	Visibility visibility = this.visibilityList.getValue();
+    	
+    	Event newEvent = new Event(name, startTime, endTime, location, description, attendees, visibility);
+    	
+    	List<Event> conflictingEvents = this.calendar.declareConflicts(newEvent);
+    	
+    	String eventText = newEvent.toString();
+    	String conflictText = "";
+    	for(Event currEvent : conflictingEvents) {
+    		conflictText += currEvent.toString() + System.lineSeparator();
+    	}
+    	String eventSummaryAndConflictText = "NEW EVENT DETAILS" + System.lineSeparator() + eventText + System.lineSeparator() + "CONFLICTING EVENTS" + conflictText;
+		Alert alert = new Alert(AlertType.CONFIRMATION, eventSummaryAndConflictText);
+		alert.setTitle("Create New Event?");
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		 if (result.isPresent() && result.get() == ButtonType.OK) {
+			this.calendar.addEvent(newEvent);
+			((Node)(event.getSource())).getScene().getWindow().hide();
+		}
     }
 
     @FXML
