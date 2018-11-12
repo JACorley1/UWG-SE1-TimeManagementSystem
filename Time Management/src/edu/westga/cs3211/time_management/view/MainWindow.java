@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -47,6 +48,14 @@ public class MainWindow {
     	addEventStage.showAndWait();
 
         this.eventList.setItems(FXCollections.observableArrayList(this.calendar.getEvents()));
+    }
+    
+    @FXML
+    void selectEvent(MouseEvent event) {
+    	Event eventSelected = this.eventList.getSelectionModel().getSelectedItem();
+    	if(eventSelected != null) {
+    		this.eventDetailsText.setText(eventSelected.toStringFull());
+    	}
     }
 
     @FXML

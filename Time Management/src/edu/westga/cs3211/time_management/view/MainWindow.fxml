@@ -11,11 +11,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane minHeight="600.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.time_management.view.MainWindow">
    <children>
       <Button layoutX="561.0" layoutY="38.0" mnemonicParsing="false" onAction="#addEvent" text="+" />
-      <ListView fx:id="eventList" layoutX="293.0" layoutY="38.0" prefHeight="549.0" prefWidth="268.0" />
+      <ListView fx:id="eventList" layoutX="293.0" layoutY="38.0" onMouseClicked="#selectEvent" prefHeight="549.0" prefWidth="268.0" />
       <TextArea fx:id="eventDetailsText" layoutX="14.0" layoutY="38.0" prefHeight="549.0" prefWidth="268.0" />
       <Label layoutX="86.0" layoutY="6.0" text="Event Details">
          <font>

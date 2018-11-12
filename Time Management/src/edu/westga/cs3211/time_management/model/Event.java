@@ -48,8 +48,6 @@ public class Event {
 			throw new IllegalArgumentException("Invalid name");
 		}
 		if(!EventDataValidator.checkStartTime(start)) {
-			System.out.println(LocalDateTime.now());
-			System.out.println(start);
 			throw new IllegalArgumentException("Invalid start time");
 		}
 		if(!EventDataValidator.checkEndTime(start, end)) {
@@ -164,6 +162,26 @@ public class Event {
 	@Override
 	public String toString() {
 		return this.name + "(" + this.startTime + "," + this.endTime + ")";
+	}
+	
+	/** Generate a multi-line full string representation of the event.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return Multi-line full string representation
+	 */
+	public String toStringFull() {
+		String fullEventDetails = "";
+		fullEventDetails += "Name: " + this.name + System.lineSeparator();
+		fullEventDetails += "Start time: " + this.startTime + System.lineSeparator();
+		fullEventDetails += "End time: " + this.endTime + System.lineSeparator();
+		fullEventDetails += "Location: " + this.location + System.lineSeparator();
+		fullEventDetails += "Description: " + this.description + System.lineSeparator();
+		fullEventDetails += "Visibility: " + this.visibility + System.lineSeparator();
+		fullEventDetails += "Attendees: " + String.join(", ", this.attendees) + System.lineSeparator();
+		
+		return fullEventDetails;
 	}
 	
 }

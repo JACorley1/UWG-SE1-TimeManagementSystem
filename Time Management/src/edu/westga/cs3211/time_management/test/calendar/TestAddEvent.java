@@ -27,8 +27,8 @@ public class TestAddEvent {
 	@Test
 	public void testAddOneEvent() {
 		Calendar myCalendar = new  Calendar();
-		LocalDateTime start = LocalDateTime.now();
-		LocalDateTime end = LocalDateTime.of(2018, 12, 2, 1, 1);
+		LocalDateTime start = LocalDateTime.now().plusDays(1);
+		LocalDateTime end = start.plusDays(1);
 		ArrayList<String> attendees = new ArrayList<String>();
 		attendees.add("jack");
 		Event myEvent = new Event("Name", start, end, "school", "homework", attendees, Visibility.PUBLIC);

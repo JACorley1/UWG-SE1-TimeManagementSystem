@@ -115,7 +115,7 @@ public class AddEvent {
     	
     	List<Event> conflictingEvents = this.calendar.declareConflicts(newEvent);
     	
-    	String eventText = newEvent.toString();
+    	String eventText = newEvent.toStringFull();
     	String conflictText = "";
     	for(Event currEvent : conflictingEvents) {
     		conflictText += currEvent.toString() + System.lineSeparator();
