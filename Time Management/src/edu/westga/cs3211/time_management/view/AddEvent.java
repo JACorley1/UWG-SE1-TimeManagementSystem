@@ -1,6 +1,7 @@
 package edu.westga.cs3211.time_management.view;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -85,11 +86,11 @@ public class AddEvent {
     		errorText += "Name is invalid" + System.lineSeparator();
     	}
     	LocalDateTime startTime = LocalDateTime.of(this.startTimeDate.getValue(), LocalTime.of(9, 0));
+    	LocalDateTime endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(5, 0));
     	if(!EventDataValidator.checkStartTime(startTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
     	}
-    	LocalDateTime endTime = LocalDateTime.of(this.endTimeDate.getValue(), LocalTime.of(5, 0));
-    	if(!EventDataValidator.checkStartTime(endTime)) {
+    	else if(!EventDataValidator.checkStartTime(endTime)) {
     		errorText += "Start time is invalid" + System.lineSeparator();
     	}
     	List<String> attendees = this.attendeesList.getItems();
@@ -156,6 +157,8 @@ public class AddEvent {
         this.visibilityList.getItems().add(Visibility.PRIVATE);
         this.visibilityList.getItems().add(Visibility.FRIENDS_ONLY);
         this.visibilityList.setValue(Visibility.PUBLIC);
+        this.startTimeDate.setValue(LocalDate.now());
+        this.endTimeDate.setValue(LocalDate.now());
     }
 
 	public void setCalendar(Calendar calendar) {

@@ -2,7 +2,6 @@ package edu.westga.cs3211.time_management.model;
 
 import java.util.List;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 /**
  * Validate Event information.

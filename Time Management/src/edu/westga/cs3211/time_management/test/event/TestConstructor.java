@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs3211.time_management.model.Event;
@@ -44,7 +43,6 @@ class TestConstructor {
 	@Test
 	void testInvalidEndTime() {		
 		LocalDateTime start = LocalDateTime.now().plusDays(1);
-		LocalDateTime end = start.plusDays(1);
 		List<String> attendees = List.of();
 			
 		assertThrows(
@@ -59,7 +57,6 @@ class TestConstructor {
 	void testInvalidAttendees() {		
 		LocalDateTime start = LocalDateTime.now().plusDays(1);
 		LocalDateTime end = start.plusDays(1);
-		List<String> attendees = List.of();
 			
 		assertThrows(
 						IllegalArgumentException.class, 

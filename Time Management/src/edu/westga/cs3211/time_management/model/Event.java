@@ -1,7 +1,6 @@
 package edu.westga.cs3211.time_management.model;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /** Store basic information for an event.
